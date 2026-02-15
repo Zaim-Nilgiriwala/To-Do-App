@@ -5,7 +5,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { useMutation } from 'convex/react';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useState } from 'react';
-import { TextInput, TouchableOpacity, View } from 'react-native';
+import { Alert, TextInput, TouchableOpacity, View } from 'react-native';
 
 const Todoinput = () => {
     const { colors } = useTheme();
@@ -14,7 +14,16 @@ const Todoinput = () => {
     const [newTodo, setNewTodo] = useState("");
     const addTodo = useMutation(api.todos.addTodo);
 
-    const handleAddTodo = async () => {}
+    const handleAddTodo = async () => {
+        if (newTodo.trim()) {
+            try {
+                await addTodo({ text: newTodo.trim() });
+                setNewTodo("");
+            } catch (error) {
+                Alert.alert("Error", "Failed to add todo.");
+            }
+        }
+    }
 
   return (
     <View style={homeStyles.inputSection}>
