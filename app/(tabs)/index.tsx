@@ -174,9 +174,6 @@ export default function Index() {
         contentContainerStyle={homeStyles.todoListContent}
         ListEmptyComponent={<EmptyState />}
       />
-      <TouchableOpacity onPress={toggleDarkMode}>
-        <Text>toggle the mode</Text>
-      </TouchableOpacity>
     </SafeAreaView>
       </LinearGradient>
   );
